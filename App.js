@@ -6,7 +6,10 @@ import {Focus} from "./src/features/Focus"
 import {Timer} from "./src/features/Timer"
 import {spacing} from "./src/utils/sizes"
 import {colors} from "./src/utils/colors"
+
+
 export default function App() {
+
   const [focusSubject ,setFocusSubject]=useState("TIMER");
 
   return (

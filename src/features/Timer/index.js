@@ -4,8 +4,9 @@ import { colors } from "../../utils/colors";
 import { spacing } from "../../utils/sizes";
 import {Countdown} from "../../components/Countdown"
 import { RoundedButton } from "../../components/RoundedButton";
-
+import {useKeepAwake} from "expo-keep-awake";
 export const Timer = ({focusSubject})=>{
+    useKeepAwake();
     const [isStarted,setIsStarted]=useState(false)
     return <View styles={styles.container}>
           <View style={styles.countdown}>
