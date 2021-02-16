@@ -7,20 +7,21 @@ const minutesToMilli = (min)=>min*1000 *60;
 const formatTime= (time)=>time<10?`0${time}`:time;
 
 export const Countdown=({
-    minutes=10,
+    minutes=1,
     isPaused,
+    onProgress
 })=>{
     const countDown = ()=>{
         setMillis(time =>{
             if(time===0)
                 return time;
             const timeLeft=time-1000;
+            onProgress(timeLeft/minutesToMilli(minutes))
             return timeLeft;
         })
     }
     const interval= React.useRef(null);
     const [millis,setMillis]=useState(minutesToMilli(minutes));
-
     useEffect(()=>{
         if(isPaused){
             return;

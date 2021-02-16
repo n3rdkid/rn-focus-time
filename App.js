@@ -10,7 +10,7 @@ import {colors} from "./src/utils/colors"
 
 export default function App() {
 
-  const [focusSubject ,setFocusSubject]=useState("TIMER");
+  const [focusSubject ,setFocusSubject]=useState("");
 
   return (
     <View style={styles.container}>

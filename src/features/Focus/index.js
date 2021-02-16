@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {TextInput, ThemeProvider} from "react-native-paper";
+import {TextInput} from "react-native-paper";
 import {RoundedButton} from "../../components/RoundedButton"
 import { colors } from '../../utils/colors';
 import {fontSizes,spacing} from "../../utils/sizes"
 export const Focus = ({addSubject})=> {
-  const [subjectText,setSubjectText] =useState();
+  const [subjectText,setSubjectText] =useState("");
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>What would you like to focus on?</Text>
         <View style={styles.inputContainer}>
-          <TextInput style={{flex:1,borderColor:colors.primary}} onSubmitEditing={({nativeEvent})=>setSubjectText(nativeEvent.text)}></TextInput>
+          <TextInput value={subjectText} style={{flex:1,borderColor:colors.primary}} onChangeText={setSubjectText}/>
           <RoundedButton onPress={()=>addSubject(subjectText)} style={{marginLeft:spacing.sm}} size={50} fontSize={"xxl"} title="+"/>
         </View>
       </View>
@@ -30,11 +30,11 @@ const styles = StyleSheet.create({
   },
   title:{
     color:colors.black,
-    fontSize:fontSizes.xl,
+    fontSize:fontSizes.xxl,
     fontWeight:"bold"
   },
   inputContainer:{
-    paddingTop:spacing.xl,
+    paddingTop:spacing.xxl,
     flexDirection:"row",
     alignItems:"center"
   }
