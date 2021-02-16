@@ -12,7 +12,7 @@ export const Focus = ({addSubject})=> {
         <Text style={styles.title}>What would you like to focus on?</Text>
         <View style={styles.inputContainer}>
           <TextInput style={{flex:1,borderColor:colors.primary}} onSubmitEditing={({nativeEvent})=>setSubjectText(nativeEvent.text)}></TextInput>
-          <RoundedButton onPress={()=>addSubject(subjectText)} style={{marginLeft:spacing.sm}} size={50} title="+"/>
+          <RoundedButton onPress={()=>addSubject(subjectText)} style={{marginLeft:spacing.sm}} size={50} fontSize={"xxl"} title="+"/>
         </View>
       </View>
     </View>
