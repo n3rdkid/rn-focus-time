@@ -36,7 +36,7 @@ export const Countdown=({
 
 const styles= StyleSheet.create({
     text: {
-        fontSize: fontSizes.xxxl,
+        fontSize: fontSizes.xxl,
         fontWeight: 'bold',
         color: colors.white,
         padding: spacing.lg,
