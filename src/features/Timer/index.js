@@ -15,8 +15,8 @@ export const Timer = ({focusSubject})=>{
             <Text style={styles.title}>Focusing on:</Text>
             <Text style={styles.task}>{focusSubject}</Text>
           </View>
-          <View>
-            <RoundedButton title="Start" fontSize={"md"} size={50}/>
+          <View style={styles.buttonWrapper}>
+            <RoundedButton title={isStarted?"Stop":"Start"} fontSize={"md"} size={75} onPress={()=>setIsStarted(!isStarted)}/>
           </View>
         </View>
 }
@@ -37,6 +37,12 @@ const styles = StyleSheet.create({
     },
     countdown:{
         flex:.5,
+        alignItems:"center",
+        justifyContent:"center"
+    },
+    buttonWrapper:{
+        flex:1,
+        paddingTop:spacing.xxxl,
         alignItems:"center",
         justifyContent:"center"
     }

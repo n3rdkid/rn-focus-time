@@ -22,6 +22,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex:1, 
+    justifyContent:"center",
+    alignItems:"center",
     paddingTop:Platform.OS==="ios"?spacing.md:spacing.lg,
     backgroundColor:colors.secondary,
   },
