@@ -30,11 +30,11 @@ const styles = StyleSheet.create({
   },
   title:{
     color:colors.black,
-    fontSize:fontSizes.lg,
+    fontSize:fontSizes.xl,
     fontWeight:"bold"
   },
   inputContainer:{
-    paddingTop:spacing.lg,
+    paddingTop:spacing.xl,
     flexDirection:"row",
     alignItems:"center"
   }
