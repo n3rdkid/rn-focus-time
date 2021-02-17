@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import {StyleSheet, Text, View} from "react-native";
+import {StyleSheet, Text, View,Vibration,Platform} from "react-native";
 import { colors } from "../../utils/colors";
 import { fontSizes, spacing } from "../../utils/sizes";
 import {Countdown} from "../../components/Countdown"
@@ -16,6 +16,24 @@ export const Timer = ({focusSubject})=>{
     const onProgress=(progress)=>{
       setProgess(progress);
     }
+
+    const onEnd = ()=>{
+      vibrate();
+      setMinutes(1);
+      setProgess(1);
+      setIsStarted(false);
+
+    }
+    const vibrate = ()=>{
+      if(Platform.OS==="ios")
+      {
+        const interval= setInterval(()=>Vibration.vibrate
+        (),1000);
+        setTimeout(()=>clearInterval(interval),5000)
+      }else{
+        Vibration.vibrate(5000);
+      }
+    }
     const changeTime=(min)=>{
       setMinutes(min);
       setProgess(1);
@@ -24,7 +42,7 @@ export const Timer = ({focusSubject})=>{
    
    return <View styles={styles.container}>
           <View style={styles.countdown}>
-            <Countdown minutes={minutes} onProgress={onProgress} isPaused={!isStarted}/>
+            <Countdown onEnd={onEnd} minutes={minutes} onProgress={onProgress} isPaused={!isStarted}/>
           </View>
           <View style={{ paddingTop: spacing.xxxl }}>
             <Text style={styles.title}>Focusing on</Text>

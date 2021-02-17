@@ -9,12 +9,16 @@ const formatTime= (time)=>time<10?`0${time}`:time;
 export const Countdown=({
     minutes,
     isPaused,
-    onProgress
+    onProgress,
+    onEnd
 })=>{
     const countDown = ()=>{
         setMillis(time =>{
-            if(time===0)
+            if(time===0){
+                clearInterval(interval.current)
+                onEnd();
                 return time;
+            }
             const timeLeft=time-1000;
             onProgress(timeLeft/minutesToMilli(minutes))
             return timeLeft;
