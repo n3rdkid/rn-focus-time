@@ -12,7 +12,7 @@ export const Countdown=({
     onProgress,
     onEnd
 })=>{
-    const [timeLeft,setTimeLeft]=useState(0);
+    const [timeLeft,setTimeLeft]=useState(minutesToMilli(minutes));
     const countDown = ()=>{
         setMillis(time =>{
             if(time===0){
