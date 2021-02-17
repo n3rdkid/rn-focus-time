@@ -12,6 +12,7 @@ export const Countdown=({
     onProgress,
     onEnd
 })=>{
+    const [timeLeft,setTimeLeft]=useState(0);
     const countDown = ()=>{
         setMillis(time =>{
             if(time===0){
@@ -19,11 +20,14 @@ export const Countdown=({
                 onEnd();
                 return time;
             }
-            const timeLeft=time-1000;
-            onProgress(timeLeft/minutesToMilli(minutes))
-            return timeLeft;
+            const timeRemaining=time-1000;
+            setTimeLeft(timeRemaining)
+            return timeRemaining;
         })
     }
+    useEffect(()=>{
+        onProgress(timeLeft/minutesToMilli(minutes))
+    },[timeLeft])
     const interval= React.useRef(null);
     const [millis,setMillis]=useState(minutesToMilli(minutes));
 

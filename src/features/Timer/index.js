@@ -7,7 +7,7 @@ import { RoundedButton } from "../../components/RoundedButton";
 import {useKeepAwake} from "expo-keep-awake";
 import { ProgressBar } from "react-native-paper";
 import {Timing} from "../Timing"
-export const Timer = ({focusSubject,onTimerEnd})=>{
+export const Timer = ({focusSubject,onTimerEnd,clearSubject})=>{
     useKeepAwake();
     const [minutes,setMinutes]=useState(.1);
     const [isStarted,setIsStarted]=useState(false)
@@ -21,7 +21,8 @@ export const Timer = ({focusSubject,onTimerEnd})=>{
       vibrate();
       setMinutes(1);
       setProgess(1);
-      setIsStarted(false);onTimerEnd();
+      setIsStarted(false);
+      onTimerEnd();
     }
     const vibrate = ()=>{
       if(Platform.OS==="ios")
@@ -34,8 +35,8 @@ export const Timer = ({focusSubject,onTimerEnd})=>{
       }
     }
     const changeTime=(min)=>{
-      setMinutes(min);
       setProgess(1);
+      setMinutes(min);
       setIsStarted(false);
     }
    
@@ -55,6 +56,9 @@ export const Timer = ({focusSubject,onTimerEnd})=>{
           </View>
           <View style={styles.buttonWrapper}>
             <RoundedButton title={isStarted?"Stop":"Start"} fontSize={"md"} size={75} onPress={()=>setIsStarted(!isStarted)}/>
+          </View>
+          <View style={styles.clearSubject}>
+            <RoundedButton title={"-"} fontSize={"md"} size={75} onPress={()=>clearSubject()}/>
           </View>
         </View>
 }
@@ -90,5 +94,9 @@ const styles = StyleSheet.create({
     progressBar:{
       height:16,
       borderRadius:8
+    },
+    clearSubject:{
+      paddingBottom:25,
+      paddingLeft:25
     }
 })
