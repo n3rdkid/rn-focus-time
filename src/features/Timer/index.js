@@ -7,9 +7,9 @@ import { RoundedButton } from "../../components/RoundedButton";
 import {useKeepAwake} from "expo-keep-awake";
 import { ProgressBar } from "react-native-paper";
 import {Timing} from "../Timing"
-export const Timer = ({focusSubject})=>{
+export const Timer = ({focusSubject,onTimerEnd})=>{
     useKeepAwake();
-    const [minutes,setMinutes]=useState(1);
+    const [minutes,setMinutes]=useState(.1);
     const [isStarted,setIsStarted]=useState(false)
     const [progress,setProgess]=useState(1)
    
@@ -21,8 +21,7 @@ export const Timer = ({focusSubject})=>{
       vibrate();
       setMinutes(1);
       setProgess(1);
-      setIsStarted(false);
-
+      setIsStarted(false);onTimerEnd();
     }
     const vibrate = ()=>{
       if(Platform.OS==="ios")
