@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useEffect, useState} from 'react';
 import { StyleSheet, View,Platform} from 'react-native';
-import {AsyncStorage} from "@react-native-community/async-storage"
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {Focus} from "./src/features/Focus"
 import {FocusHistory} from "./src/features/FocusHistory"
@@ -26,11 +26,11 @@ export default function App() {
 
   const loadFocusHistory = async()=>{
     try {
-     const history= setFocusHistory(await AsyncStorage.getItem("focusHistory"))
+     const history= await AsyncStorage.getItem("focusHistory")
     if(history&&JSON.parse(history).length)
       setFocusHistory(JSON.parse(history));
     } catch (error) {
-      setFocusHistory([]);
+      console.log("error")
     }
   }
 
@@ -46,7 +46,7 @@ export default function App() {
   }
   const saveFocusHistory = async ()=>{
     try{
-      AsyncStorage.setItem("focusHistory",JSON.stringify(focusHistory))
+      await AsyncStorage.setItem("focusHistory",JSON.stringify(focusHistory))
     }catch(e){
       console.log(e);
     }

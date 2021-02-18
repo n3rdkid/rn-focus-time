@@ -2,11 +2,11 @@ import React from "react";
 
 import {View,StyleSheet,SafeAreaView,FlatList,Text} from "react-native"
 
-import {fontSize,fontSizes,spacing} from "../../utils/sizes";
+import {fontSizes,spacing} from "../../utils/sizes";
 import {RoundedButton} from "../../components/RoundedButton"
 
-const renderHistoryItem = ({item,index})=>{
-    return <Text style={styles.historyItem(item.status)}>{item.subject}</Text>
+const renderHistoryItem = ({item})=>{
+    return <Text style={styles(item.status).historyItem}>{item.subject}</Text>
 }
 
 export const FocusHistory =({focusHistory,onClear})=>{
@@ -36,13 +36,14 @@ export const FocusHistory =({focusHistory,onClear})=>{
     </>
 }
 
-const styles=StyleSheet.create({
-    historyItem:(status)=>({
-        color: status>1?'red': 'green',
-        fontSize:fontSizes.xl
-    }),
+const styles=(status)=>StyleSheet.create({
+    historyItem:{
+        color: status > 1 ? 'red' : 'green',
+        fontSize: fontSizes.xl,
+    },
     title:{
-        fontSize:fontSizes.xxl
+        fontSize:fontSizes.xxl,
+        fontWeight:"bold",
     },
     clearContainer:{
         alignItems:"center",
