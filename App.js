@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import React,{useState} from 'react';
-import { StyleSheet, View,Platform } from 'react-native';
+import React,{useEffect, useState} from 'react';
+import { StyleSheet, View,Platform} from 'react-native';
+import {AsyncStorage} from "@react-native-community/async-storage"
 
 import {Focus} from "./src/features/Focus"
 import {FocusHistory} from "./src/features/FocusHistory"
@@ -22,8 +23,33 @@ export default function App() {
   const addFocusSubjectWithStatus = (subject,status)=>{
     setFocusHistory(previousHistory=>[...previousHistory,{subject,status}])
   }
+
+  const loadFocusHistory = async()=>{
+    try {
+     const history= setFocusHistory(await AsyncStorage.getItem("focusHistory"))
+    if(history&&JSON.parse(history).length)
+      setFocusHistory(JSON.parse(history));
+    } catch (error) {
+      setFocusHistory([]);
+    }
+  }
+
+  useEffect(()=>{
+    loadFocusHistory(); 
+  },[])
+  useEffect(()=>{
+    saveFocusHistory(); 
+  },[focusSubject])
+
   const onClear=()=>{
     setFocusHistory([]);
+  }
+  const saveFocusHistory = async ()=>{
+    try{
+      AsyncStorage.setItem("focusHistory",JSON.stringify(focusHistory))
+    }catch(e){
+      console.log(e);
+    }
   }
 
   return (
