@@ -9,7 +9,7 @@ import { ProgressBar } from "react-native-paper";
 import {Timing} from "../Timing"
 export const Timer = ({focusSubject,onTimerEnd,clearSubject})=>{
     useKeepAwake();
-    const [minutes,setMinutes]=useState(1);
+    const [minutes,setMinutes]=useState(.1);
     const [isStarted,setIsStarted]=useState(false)
     const [progress,setProgess]=useState(1)
    
@@ -29,9 +29,9 @@ export const Timer = ({focusSubject,onTimerEnd,clearSubject})=>{
       {
         const interval= setInterval(()=>Vibration.vibrate
         (),1000);
-        setTimeout(()=>clearInterval(interval),5000)
+        setTimeout(()=>clearInterval(interval),3000)
       }else{
-        Vibration.vibrate(5000);
+        Vibration.vibrate(3000);
       }
     }
     const changeTime=(min)=>{
@@ -65,7 +65,8 @@ export const Timer = ({focusSubject,onTimerEnd,clearSubject})=>{
 
 const styles = StyleSheet.create({
     container:{
-        flex:1
+        flex:1,
+        paddingTop:spacing.xxl
     },
     title:{
       fontSize:fontSizes.xxl,
